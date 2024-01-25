@@ -3,7 +3,8 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import SearchResult from "./Components/SearchResult";
 
-const BASE_URL="http://localhost:9200/"
+
+export const BASE_URL="http://localhost:9200"
 
 function App() {
   const [data,setData]=useState();
@@ -61,6 +62,7 @@ const Container=styled.div`
 max-width:1200px;
 margin:0 auto;
 
+
 `
 const TopContainer=styled.div`
 ${'' /* background:gray; */}
@@ -96,7 +98,7 @@ align-items:center;
 gap:12px;
 padding-bottom:30px;
 `
-const Button=styled.button`
+export const Button=styled.button`
 background: #ff4343;
 border-radius:5px;
 padding:6px 12px;
