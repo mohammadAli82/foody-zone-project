@@ -10,6 +10,8 @@ function App() {
   const [data,setData]=useState();
   const [loading,setLoading]=useState(false);
   const [error,setError]=useState(null);
+  const [filterdData,setFilterdData]=useState();
+  const [selectbtn,setSelectbtn]=useState("")
 
   useEffect(()=>{
     const  fetchFoodData=async()=>{
@@ -18,6 +20,7 @@ function App() {
         const respone=await fetch(BASE_URL)
         const json=await respone.json();
         setData(json);
+        setFilterdData(json);
         setLoading(false)
       } catch (error) {
         setError("404 error fetch data");
@@ -27,6 +30,54 @@ function App() {
   },[])
 
   console.log(data)
+  console.log(selectbtn)
+
+  const selectButton=(type)=>{
+
+    if(type === "all"){
+    setFilterdData(data);
+    setFilterdData('all');
+    return
+    }
+    const filter=data?.filter((food)=>
+          food.type.toLowerCase().includes(type.toLowerCase())
+      );
+    setFilterdData(filter)
+    setSelectbtn(type)
+  }
+
+
+
+  const searchFood=(e)=>{
+    const searchValue=e.target.value
+    console.log(searchValue)
+
+    if(searchValue === ""){
+      setFilterdData(null);
+    }
+
+    const filter=data?.filter((food)=>
+          food.name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+        setFilterdData(filter);
+      }
+
+    const filterBtn=[
+      {
+        name:'All',
+        type:'all'
+      },
+      {
+        name:'Breakfast',
+        type:'breakfast'
+      },{
+        name:'Dinner',
+        type:'dinner'
+      },{
+        name:'Lunch',
+        type:'lunch'
+      },
+    ]
 
   if(error) return <div>{error}</div>
   if(loading) return <div>Loading</div>
@@ -40,18 +91,19 @@ function App() {
           </h1>
         </div>
         <div className="search">
-          <input 
+          <input onChange={searchFood}
             placeholder="search food"
           />
         </div>
       </TopContainer>
       <FilterContainer>
-        <Button>All</Button>
-        <Button>Breakfast</Button>
-        <Button>Lunch</Button>
-        <Button>Dinner</Button>
+      {filterBtn.map((value)=>(
+        <Button key={value.name} onClick={()=>selectButton(value.type)}>
+          {value.name}
+        </Button>
+        ))}
       </FilterContainer>
-      <SearchResult props={data}/>
+      <SearchResult props={filterdData}/>
     </Container>
   );
 }
@@ -105,5 +157,9 @@ padding:6px 12px;
 margin-top:15px;
 border:none;
 color:white;
+cursor:pointer;
+&:hover{
+  background-color:darkred;
+}
 `
 
