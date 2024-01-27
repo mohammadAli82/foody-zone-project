@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BASE_URL, Button } from '../App'
+import {BASE_URL, Button} from '../App'
 
 function SearchResult({props}) {
   console.log(props)
