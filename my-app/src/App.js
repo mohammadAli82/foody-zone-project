@@ -36,7 +36,6 @@ function App() {
 
     if(type === "all"){
     setFilterdData(data);
-    setFilterdData('all');
     return
     }
     const filter=data?.filter((food)=>
@@ -140,6 +139,9 @@ input{
   font-size:16px;
   padding: 0 10px;
   color:white;
+  &::placeholder{
+    color:white;
+  }
 }
 }
 `

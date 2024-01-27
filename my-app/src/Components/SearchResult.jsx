@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { BASE_URL, Button } from '../App'
 
 function SearchResult({props}) {
+  console.log(props)
   return (
     <div>
        <FoodCardContainer>
@@ -11,7 +12,7 @@ function SearchResult({props}) {
             props?.map(({image,name,text,price})=>(
                 <FoodCard key={name}>
                 <div className='food_Image'>
-                  <img src={BASE_URL + image}/>
+                  <img src={BASE_URL + image} alt='lg'/>
                 </div>
                 <div className='foo_info'>
                   <div className='info'>
@@ -25,6 +26,9 @@ function SearchResult({props}) {
         }
         </FoodCards>
       </FoodCardContainer>
+      <Footer>
+        <h3>©2024 SayyedArbaab All Rights Reserved</h3>
+      </Footer>
     </div>
   )
 }
@@ -34,7 +38,7 @@ export default SearchResult
 const FoodCardContainer=styled.section`
 background-image: url("/images/food.jpg");
 background-size: cover;
-height:250vh;
+height:120vh;
 border-radius:20px;
 
 `
@@ -71,4 +75,14 @@ ${'' /* justify-content: space-around; */}
   }
 }
 
+`
+const Footer=styled.div`
+width:100%;
+height:10vh;
+color:white;
+h3{
+  text-align:center;
+  font-family: 'Josefin Sans', sans-serif;
+  line-height:65px;
+}
 `
