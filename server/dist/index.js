@@ -51,7 +51,7 @@ app.get("/", (req, res) => {
         },
         {
             name: "PANCAKE",
-            price: 25,
+            price: 15,
             text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
             image: "/images/pancake.png",
             type: "dinner",
