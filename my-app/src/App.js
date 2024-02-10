@@ -3,7 +3,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import SearchResult from "./Components/SearchResult";
 
-export const BASE_URL = "http://localhost:9200";
+export const BASE_URL = "https://food-server-node-30tljl9xv-sayyed-arbaabs-projects.vercel.app/";
 
 function App() {
   const [data, setData] = useState();
