@@ -3,8 +3,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import SearchResult from "./Components/SearchResult";
 
-export const BASE_URL = "https://food-server-node-30tljl9xv-sayyed-arbaabs-projects.vercel.app/";
-
+export const BASE_URL = "https://express-server-4hto.onrender.com";
 function App() {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
