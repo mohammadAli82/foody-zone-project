@@ -5,18 +5,23 @@ import { useState } from "react";
 
 function SearchResult({ props }) {
   console.log(props);
+  const [initialValue, setUpdatedValue] = useState(0);
   const [cartItems, setCartItems] = useState({});
+
   const toggleCart = (itemName) => {
     setCartItems((prevItems) => {
       const updatedItems = { ...prevItems };
       if (updatedItems[itemName]) {
-        delete updatedItems[itemName]; 
+        delete updatedItems[itemName];
+        setUpdatedValue((prevValue) => prevValue - 1);
       } else {
-        updatedItems[itemName] = true; 
+        updatedItems[itemName] = true;
+        setUpdatedValue((prevValue) => prevValue + 1);
       }
       return updatedItems;
     });
   };
+
   return (
     <div>
       <FoodCardContainer>
@@ -33,7 +38,7 @@ function SearchResult({ props }) {
                 </div>
                 <ButtonWrapper>
                   <Button>${price.toFixed(2)}</Button>
-                     <Button onClick={() => toggleCart(name)}>
+                  <Button onClick={() => toggleCart(name)}>
                     {cartItems[name] ? "Remove Cart" : "Add to Cart"}
                   </Button>
                 </ButtonWrapper>
@@ -43,6 +48,7 @@ function SearchResult({ props }) {
         </FoodCards>
       </FoodCardContainer>
       <Footer>
+        <Button>{initialValue}</Button>
         <h3>©2024 SayyedArbaab All Rights Reserved</h3>
       </Footer>
     </div>
