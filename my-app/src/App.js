@@ -10,6 +10,23 @@ function App() {
   const [error, setError] = useState(null);
   const [filterdData, setFilterdData] = useState();
   const [selectbtn, setSelectbtn] = useState("");
+  const [initialValue, setUpdatedValue] = useState(0);
+  const [cartItems, setCartItems] = useState({});
+
+  const toggleCart = (itemName) => {
+    setCartItems((prevItems) => {
+      const updatedItems = { ...prevItems };
+      if (updatedItems[itemName]) {
+        delete updatedItems[itemName];
+        setUpdatedValue((prevValue) => prevValue - 1);
+      } else {
+        updatedItems[itemName] = true;
+        setUpdatedValue((prevValue) => prevValue + 1);
+      }
+      return updatedItems;
+    });
+  };
+
   useEffect(() => {
     const fetchFoodData = async () => {
       setLoading(true);
@@ -93,6 +110,7 @@ function App() {
           <input onChange={searchFood} placeholder="search food" />
         </div>
         <div className="image-container">
+          <button>{initialValue}</button>
           <Image src="/images/shopping.png" alt="Logo" />
         </div>
       </TopContainer>
@@ -103,7 +121,11 @@ function App() {
           </Button>
         ))}
       </FilterContainer>
-      <SearchResult props={filterdData} />
+      <SearchResult
+        props={filterdData}
+        cartItems={cartItems}
+        toggleCart={toggleCart}
+      />
     </Container>
   );
 }
@@ -149,7 +171,28 @@ const TopContainer = styled.div`
     &::placeholder {
       color: black;
     }
-    margin-right: 20px; 
+    margin-right: 20px;
+  }
+
+  .image-container {
+    position: relative;
+  }
+
+  .image-container button {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(
+      -65%,
+      -30%
+    );
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+    z-index: 1;
+  }
 `;
 
 const Image = styled.img`

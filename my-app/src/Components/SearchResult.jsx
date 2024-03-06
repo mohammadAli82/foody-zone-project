@@ -1,26 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { BASE_URL, Button, ButtonWrapper } from "../App";
-import { useState } from "react";
 
-function SearchResult({ props }) {
+function SearchResult({ props,cartItems,toggleCart }) {
   console.log(props);
-  const [initialValue, setUpdatedValue] = useState(0);
-  const [cartItems, setCartItems] = useState({});
-
-  const toggleCart = (itemName) => {
-    setCartItems((prevItems) => {
-      const updatedItems = { ...prevItems };
-      if (updatedItems[itemName]) {
-        delete updatedItems[itemName];
-        setUpdatedValue((prevValue) => prevValue - 1);
-      } else {
-        updatedItems[itemName] = true;
-        setUpdatedValue((prevValue) => prevValue + 1);
-      }
-      return updatedItems;
-    });
-  };
 
   return (
     <div>
@@ -48,7 +31,6 @@ function SearchResult({ props }) {
         </FoodCards>
       </FoodCardContainer>
       <Footer>
-        <Button>{initialValue}</Button>
         <h3>©2024 SayyedArbaab All Rights Reserved</h3>
       </Footer>
     </div>
