@@ -3,7 +3,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import SearchResult from "./Components/SearchResult";
 
-export const BASE_URL = "http://localhost:9200";
+export const BASE_URL = "https://express-server-4hto.onrender.com";
 function App() {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
@@ -182,10 +182,7 @@ const TopContainer = styled.div`
     position: absolute;
     top: 55%;
     left: 50%;
-    transform: translate(
-      -65%,
-      -30%
-    );
+    transform: translate(-65%, -30%);
     background: none;
     border: none;
     font-size: 22px;
