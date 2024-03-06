@@ -1,9 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import { BASE_URL, Button } from "../App";
+import { BASE_URL, Button, ButtonWrapper } from "../App";
+import { useState } from "react";
 
 function SearchResult({ props }) {
   console.log(props);
+  const [cartItems, setCartItems] = useState({});
+  const toggleCart = (itemName) => {
+    setCartItems((prevItems) => {
+      const updatedItems = { ...prevItems };
+      if (updatedItems[itemName]) {
+        delete updatedItems[itemName]; 
+      } else {
+        updatedItems[itemName] = true; 
+      }
+      return updatedItems;
+    });
+  };
   return (
     <div>
       <FoodCardContainer>
@@ -18,7 +31,12 @@ function SearchResult({ props }) {
                   <h3>{name}</h3>
                   <p>{text}</p>
                 </div>
-                <Button>${price.toFixed(2)}</Button>
+                <ButtonWrapper>
+                  <Button>${price.toFixed(2)}</Button>
+                     <Button onClick={() => toggleCart(name)}>
+                    {cartItems[name] ? "Remove Cart" : "Add to Cart"}
+                  </Button>
+                </ButtonWrapper>
               </div>
             </FoodCard>
           ))}

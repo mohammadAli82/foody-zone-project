@@ -3,14 +3,13 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import SearchResult from "./Components/SearchResult";
 
-export const BASE_URL = "https://express-server-4hto.onrender.com";
+export const BASE_URL = "http://localhost:9200";
 function App() {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [filterdData, setFilterdData] = useState();
   const [selectbtn, setSelectbtn] = useState("");
-
   useEffect(() => {
     const fetchFoodData = async () => {
       setLoading(true);
@@ -98,7 +97,7 @@ function App() {
           </Button>
         ))}
       </FilterContainer>
-      <SearchResult props={filterdData} />
+      <SearchResult props={filterdData}  />
     </Container>
   );
 }
@@ -145,11 +144,16 @@ const FilterContainer = styled.div`
   gap: 12px;
   padding-bottom: 30px;
 `;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
 export const Button = styled.button`
   background: #ff4343;
   border-radius: 5px;
+  margin-top: 12px;
   padding: 6px 12px;
-  margin-top: 15px;
   border: none;
   color: white;
   cursor: pointer;
@@ -157,3 +161,4 @@ export const Button = styled.button`
     background-color: darkred;
   }
 `;
+
