@@ -82,12 +82,18 @@ function App() {
       <TopContainer>
         <div className="logo">
           <h1>
-            F<font style={{ color: "red" }}>oo</font>dy Z
-            <font style={{ color: "red" }}>o</font>ne
+            <font style={{ color: "black" }}>F</font>
+            <font style={{ color: "red" }}>oo</font>
+            <font style={{ color: "black" }}>dy Z</font>
+            <font style={{ color: "red" }}>o</font>
+            <font style={{ color: "red" }}>ne</font>
           </h1>
         </div>
         <div className="search">
           <input onChange={searchFood} placeholder="search food" />
+        </div>
+        <div className="image-container">
+          <Image src="/images/shopping.png" alt="Logo" />
         </div>
       </TopContainer>
       <FilterContainer>
@@ -97,7 +103,7 @@ function App() {
           </Button>
         ))}
       </FilterContainer>
-      <SearchResult props={filterdData}  />
+      <SearchResult props={filterdData} />
     </Container>
   );
 }
@@ -109,34 +115,48 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 const TopContainer = styled.div`
-  ${"" /* background:gray; */}
-  display:flex;
-  justify-content: space-between;
+  display: flex;
   padding: 16px;
-  align-items: center;
 
-  h1 {
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  .logo h1 {
     font-family: "Bebas Neue", sans-serif;
     font-size: 40px;
     color: white;
-    letter-spacing: ;
+    margin-right: 20px;
   }
 
-  .search {
-    input {
-      border-radius: 5px;
-      height: 7vh;
-      background-color: transparent;
-      border: 3px solid red;
-      font-size: 16px;
-      padding: 0 10px;
-      color: white;
-      &::placeholder {
-        color: white;
-      }
-    }
+  .search,
+  .image-container {
+    display: flex;
+    align-items: center;
   }
+
+  .search input {
+    border-radius: 5px;
+    height: 7vh;
+    background-color: transparent;
+    border: 3px solid red;
+    font-size: 16px;
+    padding: 0 10px;
+    color: white;
+    &::placeholder {
+      color: black;
+    }
+    margin-right: 20px; 
 `;
+
+const Image = styled.img`
+  width: 50px;
+  height: 50px;
+`;
+
 const FilterContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -161,4 +181,3 @@ export const Button = styled.button`
     background-color: darkred;
   }
 `;
-
