@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BASE_URL, Button, ButtonWrapper } from "../App";
 
-function SearchResult({ props,cartItems,toggleCart }) {
+function SearchResult({ props, cartItems, toggleCart }) {
   console.log(props);
 
   return (
