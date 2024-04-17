@@ -31,7 +31,7 @@ function SearchResult({ props, cartItems, toggleCart }) {
         </FoodCards>
       </FoodCardContainer>
       <Footer>
-        <h3>©2024 SayyedArbaab All Rights Reserved</h3>
+        <h3>©2024 Mohammad Ali All Rights Reserved</h3>
       </Footer>
     </div>
   );
